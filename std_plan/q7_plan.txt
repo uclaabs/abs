@@ -1,0 +1,361 @@
+####### After Rewrite #########
+FS[28]
+Schema: 
+_col0
+_col1
+_col2
+_col3
+__col4
+
+  **SEL[32]
+  Schema: 
+  _col0 <- _col0
+  _col1 <- _col1
+  _col2 <- _col2
+  _col3 <- _col3
+  __col4 <- Test Function Srv Greater (__col4, 0.0, __col7)
+
+    **SEL[31]
+    Schema: 
+    _col0 <- _col0
+    _col1 <- _col1
+    _col2 <- _col2
+    _col3 <- _col3
+    __col4 <- __col4
+    __col5 <- __col5
+    __col6 <- __col6
+    __col7 <- GenRowId()
+
+      GBY[26]
+      Schema: 
+      _col0 <- KEY._col0 (key)
+      _col1 <- KEY._col1 (key)
+      _col2 <- KEY._col2 (key)
+      _col3 <- srv_sum(VALUE._col0)
+      __col4 <- srv_count(VALUE.__col1)
+      __col5 <- lin_sum(VALUE.__col2)
+      __col6 <- cond_merge(VALUE.__col3)
+
+        RS[25]
+        Schema: 
+        KEY._col0
+        KEY._col1
+        KEY._col2
+        VALUE._col0
+        VALUE.__col1
+        VALUE.__col2
+        VALUE.__col3
+        Column Expr Map: 
+        KEY._col2: [_col2]
+        KEY._col0: [_col0]
+        KEY._col1: [_col1]
+        VALUE.__col1: [__col4]
+        VALUE.__col2: [__col5]
+        VALUE.__col3: [__col6]
+
+          GBY[24]
+          Schema: 
+          _col0 <- __col0 (key)
+          _col1 <- __col1 (key)
+          _col2 <- __col2 (key)
+          _col3 <- srv_sum(__col3)
+          __col4 <- srv_count()
+          __col5 <- lin_sum(__col4)
+          __col6 <- cond_merge()
+
+            **SEL[30]
+            Schema: 
+            __col0 <- _col0
+            __col1 <- _col1
+            __col2 <- _col2
+            __col3 <- _col3
+            __col4 <- __col4
+
+              SEL[22]
+              Schema: 
+              _col0 <- _col1
+              _col1 <- _col57
+              _col2 <- year(_col28)
+              _col3 <- (_col23 * (1 - _col24))
+              __col4 <- __col15
+
+                FIL[21]
+                Schema: 
+                _col0
+                _col1
+                _col6
+                _col7
+                _col18
+                _col20
+                _col23
+                _col24
+                _col28
+                _col37
+                _col40
+                _col47
+                _col50
+                _col56
+                _col57
+                __col15
+                [Filter] Predicate:
+                ((((((((_col47 = _col20) and (_col6 = _col18)) and (_col37 = _col7)) and (_col50 = _col0)) and (_col40 = _col56)) and (((_col1 = '[NATION1]') and (_col57 = '[NATION2]')) or ((_col1 = '[NATION2]') and (_col57 = '[NATION1]')))) and (_col28 > '1995-01-01')) and (_col28 < '1996-12-31'))
+
+                  **MAPJOIN[35]
+                  Schema: 
+                  _col0
+                  _col1
+                  _col6
+                  _col7
+                  _col18
+                  _col20
+                  _col23
+                  _col24
+                  _col28
+                  _col37
+                  _col40
+                  _col47
+                  _col50
+                  _col56
+                  _col57
+                  __col15
+                  Column Expr Map: 
+                  _col7: orders[_col1]
+                  _col6: orders[_col0]
+                  _col1: n1[_col51]
+                  __col15: [__col13]
+                  _col56: n1[_col50]
+                  _col57: n1[_col51]
+                  _col40: customer[_col34]
+                  _col20: lineitem[_col14]
+                  _col47: supplier[_col41]
+                  _col28: lineitem[_col22]
+                  _col37: customer[_col31]
+                  _col24: lineitem[_col18]
+                  _col50: supplier[_col44]
+                  _col23: lineitem[_col17]
+                  _col0: n1[_col50]
+                  _col18: lineitem[_col12]
+
+                    **MAPJOIN[33]
+                    Schema: 
+                    _col0
+                    _col1
+                    _col12
+                    _col14
+                    _col17
+                    _col18
+                    _col22
+                    _col31
+                    _col34
+                    _col41
+                    _col44
+                    _col50
+                    _col51
+                    __col13
+                    Column Expr Map: 
+                    _col12: lineitem[_col12]
+                    _col22: lineitem[_col22]
+                    _col17: lineitem[_col17]
+                    _col34: customer[_col43]
+                    _col51: n1[n_name]
+                    _col50: orders[_col0]
+                    _col14: lineitem[_col14]
+                    _col1: orders[_col1]
+                    _col41: supplier[_col30]
+                    _col0: orders[_col0]
+                    _col44: supplier[_col33]
+                    _col31: customer[_col40]
+                    _col18: lineitem[_col18]
+                    __col13: [__col11]
+
+                      **MAPJOIN[37]
+                      Schema: 
+                      _col0
+                      _col1
+                      _col12
+                      _col14
+                      _col17
+                      _col18
+                      _col22
+                      _col30
+                      _col33
+                      _col40
+                      _col43
+                      __col11
+                      Column Expr Map: 
+                      _col12: lineitem[_col1]
+                      _col22: lineitem[_col11]
+                      _col17: lineitem[_col6]
+                      _col33: supplier[_col22]
+                      _col14: lineitem[_col3]
+                      _col1: orders[_col29]
+                      _col0: orders[_col28]
+                      _col43: customer[c_nationkey]
+                      _col30: supplier[_col19]
+                      _col40: orders[_col29]
+                      _col18: lineitem[_col7]
+                      __col11: [__col9]
+
+                        **MAPJOIN[36]
+                        Schema: 
+                        _col1
+                        _col3
+                        _col6
+                        _col7
+                        _col11
+                        _col19
+                        _col22
+                        _col28
+                        _col29
+                        __col9
+                        Column Expr Map: 
+                        _col7: lineitem[_col16]
+                        _col28: orders[o_orderkey]
+                        _col11: lineitem[_col20]
+                        _col6: lineitem[_col15]
+                        _col22: supplier[_col3]
+                        _col3: lineitem[_col12]
+                        __col9: [__col7]
+                        _col1: lineitem[_col10]
+                        _col19: supplier[_col0]
+                        _col29: lineitem[_col10]
+
+                          **MAPJOIN[34]
+                          Schema: 
+                          _col0
+                          _col3
+                          _col10
+                          _col12
+                          _col15
+                          _col16
+                          _col20
+                          __col7
+                          Column Expr Map: 
+                          _col12: supplier[s_nationkey]
+                          _col10: lineitem[l_orderkey]
+                          _col16: lineitem[l_discount]
+                          _col3: supplier[s_nationkey]
+                          _col15: lineitem[l_extendedprice]
+                          __col7: lineitem[tid]
+                          _col0: supplier[s_suppkey]
+                          _col20: lineitem[l_shipdate]
+
+                            TS[5]
+                            Schema: 
+                            s_suppkey
+                            s_name
+                            s_address
+                            s_nationkey
+                            s_phone
+                            s_acctbal
+                            s_comment
+                            BLOCK__OFFSET__INSIDE__FILE
+                            INPUT__FILE__NAME
+                            [TableScan] TabName: supplier isSampleTable: false
+
+                            FIL[29]
+                            Schema: 
+                            l_orderkey
+                            l_suppkey
+                            l_extendedprice
+                            l_discount
+                            l_shipdate
+                            tid
+                            [Filter] Predicate:
+                            ((l_shipdate > '1995-01-01') and (l_shipdate < '1996-12-31'))
+
+                              TS[3]
+                              Schema: 
+                              tid
+                              l_orderkey
+                              l_partkey
+                              l_suppkey
+                              l_linenumber
+                              l_quantity
+                              l_extendedprice
+                              l_discount
+                              l_tax
+                              l_returnflag
+                              l_linestatus
+                              l_shipdate
+                              l_commitdate
+                              l_receiptdate
+                              l_shipinstruct
+                              l_shipmode
+                              l_comment
+                              BLOCK__OFFSET__INSIDE__FILE
+                              INPUT__FILE__NAME
+                              [TableScan] TabName: lineitem isSampleTable: true
+
+                          TS[2]
+                          Schema: 
+                          o_orderkey
+                          o_custkey
+                          o_orderstatus
+                          o_totalprice
+                          o_orderdate
+                          o_orderpriority
+                          o_clerk
+                          o_shippriority
+                          o_comment
+                          BLOCK__OFFSET__INSIDE__FILE
+                          INPUT__FILE__NAME
+                          [TableScan] TabName: orders isSampleTable: false
+
+                        TS[4]
+                        Schema: 
+                        tid
+                        c_custkey
+                        c_name
+                        c_address
+                        c_nationkey
+                        c_phone
+                        c_acctbal
+                        c_mktsegment
+                        c_comment
+                        BLOCK__OFFSET__INSIDE__FILE
+                        INPUT__FILE__NAME
+                        [TableScan] TabName: customer isSampleTable: false
+
+                      TS[0]
+                      Schema: 
+                      n_nationkey
+                      n_name
+                      n_regionkey
+                      n_comment
+                      BLOCK__OFFSET__INSIDE__FILE
+                      INPUT__FILE__NAME
+                      [TableScan] TabName: nation isSampleTable: false
+
+                    TS[1]
+                    Schema: 
+                    n_nationkey
+                    n_name
+                    n_regionkey
+                    n_comment
+                    BLOCK__OFFSET__INSIDE__FILE
+                    INPUT__FILE__NAME
+                    [TableScan] TabName: nation isSampleTable: false
+
+####### Tree #########
+FS[28]
+  **SEL[32]
+    **SEL[31]
+      GBY[26]
+        RS[25]
+          GBY[24]
+            **SEL[30]
+              SEL[22]
+                FIL[21]
+                  **MAPJOIN[35]
+                    **MAPJOIN[33]
+                      **MAPJOIN[37]
+                        **MAPJOIN[36]
+                          **MAPJOIN[34]
+                            TS[5] false
+                            FIL[29]
+                              TS[3] true
+                          TS[2] false
+                        TS[4] false
+                      TS[0] false
+                    TS[1] false

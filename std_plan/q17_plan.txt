@@ -1,0 +1,264 @@
+####### After Rewrite #########
+FS[21]
+Schema: 
+_col0
+__col1
+
+  **SEL[29]
+  Schema: 
+  _col0 <- _col0
+  __col1 <- Test Function Srv Greater (__col1, 0.0, __col4)
+
+    **SEL[28]
+    Schema: 
+    _col0 <- _col0
+    __col1 <- __col1
+    __col2 <- __col2
+    __col3 <- __col3
+    __col4 <- GenRowId()
+
+      GBY[19]
+      Schema: 
+      _col0 <- srv_sum(VALUE._col0)
+      __col1 <- srv_count(VALUE.__col1)
+      __col2 <- lin_sum(VALUE.__col2)
+      __col3 <- cond_merge(VALUE.__col3)
+
+        RS[18]
+        Schema: 
+        VALUE._col0
+        VALUE.__col1
+        VALUE.__col2
+        VALUE.__col3
+        Column Expr Map: 
+        VALUE.__col1: [__col1]
+        VALUE.__col2: [__col2]
+        VALUE.__col3: [__col3]
+
+          GBY[17]
+          Schema: 
+          _col0 <- srv_sum(__col0)
+          __col1 <- srv_count()
+          __col2 <- lin_sum(__col1)
+          __col3 <- cond_merge(__col2)
+
+            **SEL[27]
+            Schema: 
+            __col0 <- (_col6 / 7.0)
+            __col1 <- __col1
+            __col2 <- __col2
+
+              **SEL[26]
+              Schema: 
+              _col6 <- _col6
+              __col1 <- __col5
+              __col2 <- Test Function Cond Join (__col6, Test Function Srv Greater (_col27, _col5, __col7))
+
+                FIL[15]
+                Schema: 
+                _col5
+                _col6
+                _col20
+                _col23
+                _col27
+                __col5
+                __col6
+                __col7
+                [Filter] Predicate:
+                (((_col20 = '[BRAND]') and (_col23 = '[CONTAINER]')) and Test Function Srv Greater (_col27, _col5))
+
+                  **MAPJOIN[31]
+                  Schema: 
+                  _col5
+                  _col6
+                  _col20
+                  _col23
+                  _col27
+                  __col5
+                  __col6
+                  __col7
+                  Column Expr Map: 
+                  _col6: lineitem[_col6]
+                  _col27: null[_col1]
+                  _col5: lineitem[_col5]
+                  _col23: part[_col23]
+                  __col6: [__col2]
+                  __col7: [__col3]
+                  __col5: [__col5]
+                  _col20: part[_col20]
+
+                    SEL[11]
+                    Schema: 
+                    _col17 <- _col19
+                    _col20 <- _col22
+                    _col23 <- _col25
+                    _col5 <- _col5
+                    _col6 <- _col6
+                    __col5 <- __col5
+
+                      **MAPJOIN[30]
+                      Schema: 
+                      _col5
+                      _col6
+                      _col19
+                      _col22
+                      _col25
+                      __col5
+                      Column Expr Map: 
+                      _col25: part[p_container]
+                      _col6: lineitem[l_extendedprice]
+                      _col5: lineitem[l_quantity]
+                      _col22: part[p_brand]
+                      _col19: part[p_partkey]
+                      __col5: lineitem[tid]
+
+                        TS[6]
+                        Schema: 
+                        tid
+                        l_orderkey
+                        l_partkey
+                        l_suppkey
+                        l_linenumber
+                        l_quantity
+                        l_extendedprice
+                        l_discount
+                        l_tax
+                        l_returnflag
+                        l_linestatus
+                        l_shipdate
+                        l_commitdate
+                        l_receiptdate
+                        l_shipinstruct
+                        l_shipmode
+                        l_comment
+                        BLOCK__OFFSET__INSIDE__FILE
+                        INPUT__FILE__NAME
+                        [TableScan] TabName: lineitem isSampleTable: true
+
+                        FIL[22]
+                        Schema: 
+                        p_partkey
+                        p_brand
+                        p_container
+                        [Filter] Predicate:
+                        ((p_brand = '[BRAND]') and (p_container = '[CONTAINER]'))
+
+                          TS[7]
+                          Schema: 
+                          p_partkey
+                          p_name
+                          p_mfgr
+                          p_brand
+                          p_type
+                          p_size
+                          p_container
+                          p_retailprice
+                          p_comment
+                          BLOCK__OFFSET__INSIDE__FILE
+                          INPUT__FILE__NAME
+                          [TableScan] TabName: part isSampleTable: false
+
+                    **SEL[25]
+                    Schema: 
+                    _col0 <- _col0
+                    _col1 <- _col1
+                    __col2 <- Test Function Srv Greater (__col2, 0.0, __col5)
+                    __col3 <- __col5
+
+                      **SEL[24]
+                      Schema: 
+                      _col0 <- _col0
+                      _col1 <- _col1
+                      __col2 <- __col2
+                      __col3 <- __col3
+                      __col4 <- __col4
+                      __col5 <- GenRowId()
+
+                        GBY[4]
+                        Schema: 
+                        _col0 <- KEY._col0 (key)
+                        _col1 <- srv_avg(VALUE._col0)
+                        __col2 <- srv_count(VALUE.__col1)
+                        __col3 <- lin_sum(VALUE.__col2)
+                        __col4 <- cond_merge(VALUE.__col3)
+
+                          RS[3]
+                          Schema: 
+                          KEY._col0
+                          VALUE._col0
+                          VALUE.__col1
+                          VALUE.__col2
+                          VALUE.__col3
+                          Column Expr Map: 
+                          KEY._col0: [_col0]
+                          VALUE.__col1: [__col2]
+                          VALUE.__col2: [__col3]
+                          VALUE.__col3: [__col4]
+
+                            GBY[2]
+                            Schema: 
+                            _col0 <- __col0 (key)
+                            _col1 <- srv_avg(__col1)
+                            __col2 <- srv_count()
+                            __col3 <- lin_sum(__col2)
+                            __col4 <- cond_merge()
+
+                              **SEL[23]
+                              Schema: 
+                              __col0 <- l_partkey
+                              __col1 <- (0.2 * l_quantity)
+                              __col2 <- __col2
+
+                                SEL[1]
+                                Schema: 
+                                l_partkey <- l_partkey
+                                l_quantity <- l_quantity
+                                __col2 <- tid
+
+                                  TS[0]
+                                  Schema: 
+                                  tid
+                                  l_orderkey
+                                  l_partkey
+                                  l_suppkey
+                                  l_linenumber
+                                  l_quantity
+                                  l_extendedprice
+                                  l_discount
+                                  l_tax
+                                  l_returnflag
+                                  l_linestatus
+                                  l_shipdate
+                                  l_commitdate
+                                  l_receiptdate
+                                  l_shipinstruct
+                                  l_shipmode
+                                  l_comment
+                                  BLOCK__OFFSET__INSIDE__FILE
+                                  INPUT__FILE__NAME
+                                  [TableScan] TabName: lineitem isSampleTable: true
+
+####### Tree #########
+FS[21]
+  **SEL[29]
+    **SEL[28]
+      GBY[19]
+        RS[18]
+          GBY[17]
+            **SEL[27]
+              **SEL[26]
+                FIL[15]
+                  **MAPJOIN[31]
+                    SEL[11]
+                      **MAPJOIN[30]
+                        TS[6] true
+                        FIL[22]
+                          TS[7] false
+                    **SEL[25]
+                      **SEL[24]
+                        GBY[4]
+                          RS[3]
+                            GBY[2]
+                              **SEL[23]
+                                SEL[1]
+                                  TS[0] true

@@ -1,0 +1,198 @@
+####### After Rewrite #########
+FS[17]
+Schema: 
+_col0
+_col1
+__col2
+
+  **SEL[24]
+  Schema: 
+  _col0 <- _col0
+  _col1 <- _col1
+  __col2 <- Test Function Srv Greater (__col2, 0.0, __col4)
+
+    **SEL[23]
+    Schema: 
+    _col0 <- _col0
+    _col1 <- _col1
+    __col2 <- __col2
+    __col3 <- __col3
+    __col4 <- GenRowId()
+
+      GBY[15]
+      Schema: 
+      _col0 <- KEY._col0 (key)
+      _col1 <- case_count(VALUE._col0)
+      __col2 <- case_count(VALUE.__col1)
+      __col3 <- cond_merge(VALUE.__col2)
+
+        RS[14]
+        Schema: 
+        KEY._col0
+        VALUE._col0
+        VALUE.__col1
+        VALUE.__col2
+        Column Expr Map: 
+        KEY._col0: [_col0]
+        VALUE.__col1: [__col2]
+        VALUE.__col2: [__col3]
+
+          GBY[13]
+          Schema: 
+          _col0 <- _col5 (key)
+          _col1 <- case_count()
+          __col2 <- case_count()
+          __col3 <- cond_merge(__col1)
+
+            SEL[12]
+            Schema: 
+            _col5 <- _col5
+            __col1 <- __col1
+
+              JOIN[10]
+              Schema: 
+              _col5
+              __col1
+              Column Expr Map: 
+              _col5: orders[VALUE._col5]
+              __col1: [VALUE.__col0]
+              [Join]
+
+                RS[8]
+                Schema: 
+                VALUE._col5
+                Column Expr Map: 
+                VALUE._col5: orders[o_orderpriority]
+
+                  FIL[19]
+                  Schema: 
+                  o_orderkey
+                  o_orderdate
+                  o_orderpriority
+                  [Filter] Predicate:
+                  ((o_orderdate >= '1993-07-01') and (o_orderdate < '1993-07-01'))
+
+                    TS[7]
+                    Schema: 
+                    o_orderkey
+                    o_custkey
+                    o_orderstatus
+                    o_totalprice
+                    o_orderdate
+                    o_orderpriority
+                    o_clerk
+                    o_shippriority
+                    o_comment
+                    BLOCK__OFFSET__INSIDE__FILE
+                    INPUT__FILE__NAME
+                    [TableScan] TabName: orders isSampleTable: false
+
+                RS[9]
+                Schema: 
+                VALUE.__col0
+                Column Expr Map: 
+                VALUE.__col0: [__col1]
+
+                  **SEL[22]
+                  Schema: 
+                  _col0 <- _col0
+                  __col1 <- Test Function Srv Greater (__col1, 0.0, __col4)
+
+                    **SEL[21]
+                    Schema: 
+                    _col0 <- _col0
+                    __col1 <- __col1
+                    __col2 <- __col2
+                    __col3 <- __col3
+                    __col4 <- GenRowId()
+
+                      GBY[5]
+                      Schema: 
+                      _col0 <- KEY._col0 (key)
+                      __col1 <- srv_count(VALUE.__col0)
+                      __col2 <- lin_sum(VALUE.__col1)
+                      __col3 <- cond_merge(VALUE.__col2)
+
+                        RS[4]
+                        Schema: 
+                        KEY._col0
+                        VALUE.__col0
+                        VALUE.__col1
+                        VALUE.__col2
+                        Column Expr Map: 
+                        KEY._col0: [_col0]
+                        VALUE.__col0: [__col1]
+                        VALUE.__col1: [__col2]
+                        VALUE.__col2: [__col3]
+
+                          GBY[3]
+                          Schema: 
+                          _col0 <- __col0 (key)
+                          __col1 <- srv_count()
+                          __col2 <- lin_sum(__col1)
+                          __col3 <- cond_merge()
+
+                            **SEL[20]
+                            Schema: 
+                            __col0 <- l_orderkey
+                            __col1 <- __col1
+
+                              SEL[2]
+                              Schema: 
+                              l_orderkey <- l_orderkey
+                              __col1 <- tid
+
+                                FIL[18]
+                                Schema: 
+                                l_orderkey
+                                l_commitdate
+                                l_receiptdate
+                                tid
+                                [Filter] Predicate:
+                                (l_commitdate < l_receiptdate)
+
+                                  TS[0]
+                                  Schema: 
+                                  tid
+                                  l_orderkey
+                                  l_partkey
+                                  l_suppkey
+                                  l_linenumber
+                                  l_quantity
+                                  l_extendedprice
+                                  l_discount
+                                  l_tax
+                                  l_returnflag
+                                  l_linestatus
+                                  l_shipdate
+                                  l_commitdate
+                                  l_receiptdate
+                                  l_shipinstruct
+                                  l_shipmode
+                                  l_comment
+                                  BLOCK__OFFSET__INSIDE__FILE
+                                  INPUT__FILE__NAME
+                                  [TableScan] TabName: lineitem isSampleTable: true
+
+####### Tree #########
+FS[17]
+  **SEL[24]
+    **SEL[23]
+      GBY[15]
+        RS[14]
+          GBY[13]
+            SEL[12]
+              JOIN[10]
+                RS[8]
+                  FIL[19]
+                    TS[7] false
+                RS[9]
+                  **SEL[22]
+                    **SEL[21]
+                      GBY[5]
+                        RS[4]
+                          GBY[3]
+                            **SEL[20]
+                              SEL[2]
+                                FIL[18]
+                                  TS[0] true

@@ -1,0 +1,142 @@
+####### After Rewrite #########
+FS[11]
+Schema: 
+_col0
+__col1
+
+  **SEL[14]
+  Schema: 
+  _col0 <- _col0
+  __col1 <- Test Function Srv Greater (__col1, 0.0, __col4)
+
+    **SEL[13]
+    Schema: 
+    _col0 <- _col0
+    __col1 <- __col1
+    __col2 <- __col2
+    __col3 <- __col3
+    __col4 <- GenRowId()
+
+      GBY[9]
+      Schema: 
+      _col0 <- srv_sum(VALUE._col0)
+      __col1 <- srv_count(VALUE.__col1)
+      __col2 <- lin_sum(VALUE.__col2)
+      __col3 <- cond_merge(VALUE.__col3)
+
+        RS[8]
+        Schema: 
+        VALUE._col0
+        VALUE.__col1
+        VALUE.__col2
+        VALUE.__col3
+        Column Expr Map: 
+        VALUE.__col1: [__col1]
+        VALUE.__col2: [__col2]
+        VALUE.__col3: [__col3]
+
+          GBY[7]
+          Schema: 
+          _col0 <- srv_sum(__col0)
+          __col1 <- srv_count()
+          __col2 <- lin_sum(__col1)
+          __col3 <- cond_merge()
+
+            **SEL[12]
+            Schema: 
+            __col0 <- (_col6 * (1 - _col7))
+            __col1 <- __col2
+
+              SEL[6]
+              Schema: 
+              _col6 <- _col6
+              _col7 <- _col7
+              __col2 <- __col8
+
+                FIL[5]
+                Schema: 
+                _col5
+                _col6
+                _col7
+                _col14
+                _col15
+                _col22
+                _col24
+                _col25
+                __col8
+                [Filter] Predicate:
+                ((((((((((_col22 = 'Brand#12') and (_col25 regexp 'SM CASE||SM BOX||SM PACK||SM PKG')) and (_col5 >= 1.0)) and (_col5 <= 11.0)) and (_col24 >= 1)) and (_col24 <= 5)) and (_col15 regexp 'AIR||AIR REG')) and (_col14 = 'DELIVER IN PERSON')) or ((((((((_col22 = 'Brand#23') and (_col25 regexp 'MED BAG||MED BOX||MED PKG||MED PACK')) and (_col5 >= 10.0)) and (_col5 <= 20.0)) and (_col24 >= 1)) and (_col24 <= 10)) and (_col15 regexp 'AIR||AIR REG')) and (_col14 = 'DELIVER IN PERSON'))) or ((((((((_col22 = 'Brand#34') and (_col25 regexp 'LG CASE||LG BOX||LG PACK||LG PKG')) and (_col5 >= 20.0)) and (_col5 <= 30.0)) and (_col24 >= 1)) and (_col24 <= 15)) and (_col15 regexp 'AIR||AIR REG')) and (_col14 = 'DELIVER IN PERSON')))
+
+                  **MAPJOIN[15]
+                  Schema: 
+                  _col5
+                  _col6
+                  _col7
+                  _col14
+                  _col15
+                  _col22
+                  _col24
+                  _col25
+                  __col8
+                  Column Expr Map: 
+                  _col25: p[p_container]
+                  _col7: l[l_discount]
+                  _col6: l[l_extendedprice]
+                  _col5: l[l_quantity]
+                  _col22: p[p_brand]
+                  __col8: l[tid]
+                  _col24: p[p_size]
+                  _col15: l[l_shipmode]
+                  _col14: l[l_shipinstruct]
+
+                    TS[1]
+                    Schema: 
+                    tid
+                    l_orderkey
+                    l_partkey
+                    l_suppkey
+                    l_linenumber
+                    l_quantity
+                    l_extendedprice
+                    l_discount
+                    l_tax
+                    l_returnflag
+                    l_linestatus
+                    l_shipdate
+                    l_commitdate
+                    l_receiptdate
+                    l_shipinstruct
+                    l_shipmode
+                    l_comment
+                    BLOCK__OFFSET__INSIDE__FILE
+                    INPUT__FILE__NAME
+                    [TableScan] TabName: lineitem isSampleTable: true
+
+                    TS[0]
+                    Schema: 
+                    p_partkey
+                    p_name
+                    p_mfgr
+                    p_brand
+                    p_type
+                    p_size
+                    p_container
+                    p_retailprice
+                    p_comment
+                    BLOCK__OFFSET__INSIDE__FILE
+                    INPUT__FILE__NAME
+                    [TableScan] TabName: part isSampleTable: false
+
+####### Tree #########
+FS[11]
+  **SEL[14]
+    **SEL[13]
+      GBY[9]
+        RS[8]
+          GBY[7]
+            **SEL[12]
+              SEL[6]
+                FIL[5]
+                  **MAPJOIN[15]
+                    TS[1] true
+                    TS[0] false

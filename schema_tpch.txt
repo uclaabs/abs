@@ -1,0 +1,8 @@
+part: p_partkey
+supplier: s_suppkey
+partsupp: ps_partkey, ps_suppkey
+customer: c_custkey
+orders: o_orderkey
+lineitem: l_orderkey, l_linenumber
+nation: n_nationkey
+region: r_regionkey
