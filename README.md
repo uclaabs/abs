@@ -18,7 +18,7 @@ ABS is currently built on top of
 
 ABS can be set up very quickly using standalone mode.
 
-1. Clone the source using `git clone git@bitbucket.org:squeeze/abs.git`
+1. Clone the source using 
 2. Enter abs root folder `cd abs`
 3. Run clean script `chmod +x clean.sh && ./clean.sh`
 4. Compile using `sbt/sbt compile`
@@ -33,8 +33,13 @@ You can setup the cluster by following similar steps in [Running Shark on a Clus
 
 ### Related Papers
 
-Kai Zeng, Shi Gao, Jiaqi Gu, Barzan Mozafari, Carlo Zaniolo: [ABS: a system for scalable approximate queries with accuracy guarantees.](http://dl.acm.org/citation.cfm?id=2594532) ACM SIGMOD 2014
+Kai Zeng, Shi Gao, Jiaqi Gu, Barzan Mozafari, Carlo Zaniolo: [ABS: a system for scalable approximate queries with accuracy guarantees.](http://dl.acm.org/citation.cfm?id=2594532) ACM SIGMOD 2014 (Best Demo Award)
 
 Kai Zeng, Shi Gao, Barzan Mozafari, Carlo Zaniolo: [The analytical bootstrap: a new method for fast error estimation in approximate query processing.](http://dl.acm.org/citation.cfm?id=2588555.2588579) ACM SIGMOD 2014
+
+Kai Zeng, Shi Gao, Barzan Mozafari, Carlo Zaniolo: The Analytical Bootstrap: A New Method for Fast Error Estimation in Approximate Query Processing. Technical Report CSD #130028, UCLA, 2013.
+
+
+
 
 
