@@ -14,6 +14,8 @@ ABS is currently built on top of
 + Shark 0.9.1
 + Spark 0.9.1
 
+Comparing with the matlab-based implementation presented in our full paper,  ABS achieves fast performance with great scalability. 
+
 ### Standalone Setup
 
 ABS can be set up very quickly using standalone mode.
@@ -37,7 +39,7 @@ Kai Zeng, Shi Gao, Jiaqi Gu, Barzan Mozafari, Carlo Zaniolo: [ABS: a system for 
 
 Kai Zeng, Shi Gao, Barzan Mozafari, Carlo Zaniolo: [The analytical bootstrap: a new method for fast error estimation in approximate query processing.](http://dl.acm.org/citation.cfm?id=2588555.2588579) ACM SIGMOD 2014
 
-Kai Zeng, Shi Gao, Barzan Mozafari, Carlo Zaniolo: The Analytical Bootstrap: A New Method for Fast Error Estimation in Approximate Query Processing. Technical Report CSD #130028, UCLA, 2013.
+Kai Zeng, Shi Gao, Barzan Mozafari, Carlo Zaniolo: The analytical bootstrap: a new method for fast error estimation in approximate query processing. Technical Report CSD #130028, UCLA, 2013.
 
 
 
