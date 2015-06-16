@@ -20,7 +20,7 @@ Comparing with the matlab-based implementation presented in our full paper,  ABS
 
 ABS can be set up very quickly using standalone mode.
 
-1. Clone the source using 
+1. Clone the source
 2. Enter abs root folder `cd abs`
 3. Run clean script `chmod +x clean.sh && ./clean.sh`
 4. Compile using `sbt/sbt compile`
