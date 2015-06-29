@@ -14,7 +14,7 @@ ABS is currently built on top of
 + Shark 0.9.1
 + Spark 0.9.1
 
-Note that ABS is different from the sequential implementation ABM presented in [our SIGMOD paper](http://dl.acm.org/citation.cfm?id=2588555.2588579), which is implemented as a middle layer on top of MonetDB using Java and R. 
+Note that ABS is different from the sequential implementation ABM presented in our SIGMOD [paper](http://dl.acm.org/citation.cfm?id=2588555.2588579), which is implemented as a middle layer on top of MonetDB using Java and R. 
 
 ### Standalone Setup
 
