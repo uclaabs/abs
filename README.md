@@ -14,7 +14,7 @@ ABS is currently built on top of
 + Shark 0.9.1
 + Spark 0.9.1
 
-Comparing with the matlab-based implementation presented in our full paper,  ABS achieves fast performance with great scalability. 
+Note that ABS is different from the sequential implementation ABM presented in [our SIGMOD paper](http://dl.acm.org/citation.cfm?id=2588555.2588579), which is implemented as a middle layer on top of MonetDB using Java and R. 
 
 ### Standalone Setup
 
@@ -32,6 +32,8 @@ After you have successfully compiled your abs code, you can start ABS cli by
 
 ABS requires Spark 0.9.1 for running on clusters.
 You can setup the cluster by following similar steps in [Running Shark on a Cluster](https://github.com/amplab/shark/wiki/Running-Shark-on-a-Cluster)
+
+ABS extends Hive and Shark. This repository contains all the codes for Shark and for Hive, we provide a jar file: hive-exec-0.11.0-shark-0.9.1.jar. If you are interested in Hive implementation, please check [here](https://github.com/uclaabs/absHive).
 
 ### Related Papers
 
